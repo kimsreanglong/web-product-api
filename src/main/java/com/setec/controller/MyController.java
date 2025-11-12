@@ -11,6 +11,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -69,6 +70,13 @@ public class MyController {
 			return product.get();		
 		
 		return ResponseEntity.status(404).body(Map.of("message","Product id="+id+" not found"));
+	}
+	@Controller
+	public class HomeController {
+	    @GetMapping("/")
+	    public String redirectToSwagger() {
+	        return "redirect:/swagger-ui/index.html";
+	    }
 	}
 	
 	@DeleteMapping("/{id}")
